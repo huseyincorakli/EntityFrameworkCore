@@ -5,7 +5,14 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseFirst", "DatabaseFirst\DatabaseFirst.csproj", "{11CBEF8A-7390-4DB9-958B-E0D2B770FFBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFirst", "CodeFirst\CodeFirst.csproj", "{00000EDF-0264-4F37-89DA-5B2E70339DF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeFirst", "CodeFirst\CodeFirst.csproj", "{00000EDF-0264-4F37-89DA-5B2E70339DF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data_Addition_And_Persistence", "Data_Addition_And_Persistence\Data_Addition_And_Persistence.csproj", "{36D8E18F-5DEC-49FE-92F1-3A7FB4E0CB19}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Command", "Command", "{AAFE7140-1225-4B48-86AE-DC48B9F78294}"
+	ProjectSection(SolutionItems) = preProject
+		Command.txt = Command.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +28,10 @@ Global
 		{00000EDF-0264-4F37-89DA-5B2E70339DF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00000EDF-0264-4F37-89DA-5B2E70339DF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00000EDF-0264-4F37-89DA-5B2E70339DF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36D8E18F-5DEC-49FE-92F1-3A7FB4E0CB19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36D8E18F-5DEC-49FE-92F1-3A7FB4E0CB19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36D8E18F-5DEC-49FE-92F1-3A7FB4E0CB19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36D8E18F-5DEC-49FE-92F1-3A7FB4E0CB19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -21,6 +21,21 @@ namespace Querying.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("CompItem", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductCompId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductId", "ProductCompId");
+
+                    b.HasIndex("ProductCompId");
+
+                    b.ToTable("CompItems");
+                });
+
             modelBuilder.Entity("Product", b =>
                 {
                     b.Property<int>("Id")
@@ -32,6 +47,9 @@ namespace Querying.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
 
                     b.Property<int>("Stock")
                         .HasColumnType("int");
@@ -60,7 +78,26 @@ namespace Querying.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductComp");
+                    b.ToTable("ProductComps");
+                });
+
+            modelBuilder.Entity("CompItem", b =>
+                {
+                    b.HasOne("ProductComp", "ProductComp")
+                        .WithMany()
+                        .HasForeignKey("ProductCompId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("ProductComp");
                 });
 
             modelBuilder.Entity("ProductComp", b =>

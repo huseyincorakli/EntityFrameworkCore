@@ -25,18 +25,77 @@ ECommerceDbContext context = new();
 
 #region Deffered Execution
 
-int prouductId = 15;
-var products = from product in context.Products
-               where product.Id > prouductId
-               select product;
+//int prouductId = 15;
+//var products = from product in context.Products
+//               where product.Id > prouductId
+//               select product;
 
-prouductId = 250;
-foreach (var product in products)
-{
-    Console.WriteLine(product.Name);
-}
+//prouductId = 250;
+//foreach (var product in products)
+//{
+//    Console.WriteLine(product.Name);
+//}
 #endregion
 
+#region Çoğul veri getiren sorgulama fonksiyonları
+
+#region ToList
+//List<Product> products = await context.Products.ToListAsync();
+#endregion
+
+#region Where
+
+#region Method syntax
+//var products = await context.Products.Where(p => p.Stock > 254).ToListAsync();
+#endregion
+
+#region Query sytnax
+//var products = await (from product in context.Products
+//                      where product.Stock > 254
+//                      select product).ToListAsync();
+
+#endregion
+
+#endregion
+
+#region OrderBy
+#region Method Syntax
+//var products = await context.Products
+//               .Where(p => p.Stock > 250 && p.Name.EndsWith("5"))
+//               .OrderByDescending(p => p.Stock).ToListAsync();
+
+//foreach (var product in products)
+//{
+//    Console.WriteLine("ProductName:"+product.Name+" "+"Stock:"+product.Stock);
+//}
+#endregion
+#region Query Syntax
+//var products = await (from product in context.Products
+//                      where product.Stock > 250 && product.Name.EndsWith("5")
+//                      orderby product.Stock
+//                      select product).ToListAsync();
+//foreach (var item in products)
+//{
+//    Console.WriteLine(item.Name+" "+item.Stock);
+//}
+#endregion
+#endregion
+
+
+#region ThenBy
+var products = await context.Products
+               .Where(p => p.Stock > 250 && p.Name.EndsWith("5"))
+               .OrderBy(p => p.Stock).ThenBy(p=>p.Id).ToListAsync();
+foreach (var item in products)
+{
+    Console.WriteLine(item.Id+" "+item.Name+" "+item.Stock);
+}
+
+#endregion
+
+
+
+#endregion
 
 public class ECommerceDbContext : DbContext
 {

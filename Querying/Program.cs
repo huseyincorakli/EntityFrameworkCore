@@ -197,13 +197,13 @@ ECommerceDbContext context = new();
 #endregion
 #region QUERY SYNTAX
 
-var data = await (from product in context.Products
-                  group product by product.Price
-                  into productsGroupByPrice
-                  select new
-                  {
-                      Fiyat = productsGroupByPrice.Key
-                  }).ToListAsync();
+//var data = await (from product in context.Products
+//                  group product by product.Price
+//                  into productsGroupByPrice
+//                  select new
+//                  {
+//                      Fiyat = productsGroupByPrice.Key
+//                  }).ToListAsync();
 
 #endregion
 

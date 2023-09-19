@@ -187,6 +187,28 @@ ECommerceDbContext context = new();
 
 #endregion
 
+#region GroupBy Fonksiyonu
+
+#region METHOD SYNTAX
+//var data = await context.Products.GroupBy(p => p.Price).Select(productsGroupByPrice => new
+//{
+//    Fiyat = productsGroupByPrice.Key
+//}).ToListAsync();
+#endregion
+#region QUERY SYNTAX
+
+var data = await (from product in context.Products
+                  group product by product.Price
+                  into productsGroupByPrice
+                  select new
+                  {
+                      Fiyat = productsGroupByPrice.Key
+                  }).ToListAsync();
+
+#endregion
+
+#endregion
+
 Console.WriteLine();
 public class ECommerceDbContext : DbContext
 {

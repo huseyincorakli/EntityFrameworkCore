@@ -131,11 +131,23 @@ ECommerceDbContext context = new();
 #endregion
 #region Last
 
- var data  = await context.Products.OrderBy(p=>p.Stock).LastAsync(p=>p.Id>1);
+//var data  = await context.Products.OrderBy(p=>p.Stock).LastAsync(p=>p.Id>1);
 #endregion
 #endregion
 
 #region Diğer sorgulama fonksiyonları
+
+//var abc = await context.Products.CountAsync(p=>p.Stock>10);
+//var abc = await context.Products.LongCountAsync();
+//var abc = await context.Products.AnyAsync(p=>p.Price>25);
+//var abc = await context.Products.MaxAsync(p => p.Price);
+//var abc = await context.Products.MinAsync(p => p.Price);
+//var abc = await context.Products.AllAsync(p => p.Price > 15);
+//var abc = await context.Products.SumAsync(p => p.Stock);
+//var abc = await context.Products.AverageAsync(p => p.Stock);
+//var abc = await context.Products.Where(p=>p.Name.Contains("a")).ToListAsync();
+//var abc = await context.Products.Where(p => p.Name.EndsWith("a")).ToListAsync();
+//var abc = await context.Products.Where(p => p.Name.StartsWith("a")).ToListAsync();
 
 #endregion
 

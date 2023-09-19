@@ -16,4 +16,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Data_Addition_And_Persistence\Data_Addition_And_Persistence.csproj" />
+  </ItemGroup>
+
 </Project>

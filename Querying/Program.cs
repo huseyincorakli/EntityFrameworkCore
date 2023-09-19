@@ -151,6 +151,42 @@ ECommerceDbContext context = new();
 
 #endregion
 
+#region Sorgu sonucu dönüşüm fonskiyonları
+#region ToDictionary 
+
+//var data = context.Products.ToDictionary(p => p.Name, p => p.Price);
+
+#endregion
+#region ToArray
+
+//var data = context.Products.ToArray();
+#endregion
+
+#region Select
+
+//var abc= await context.Products.Select(p=> new { p.Id, p.Name,}).ToListAsync();
+//var abc = await context.Products.Select(p => new Product{Id=p.Id,Name=p.Name}).ToListAsync();
+
+//var abc = await context.Products.Select(p => new X { Id = p.Id, Name = p.Name }).ToListAsync();
+
+#endregion
+#region SelectMany
+
+//var data = await context.Products.Include(p => p.ProductComps).SelectMany(p => p.ProductComps, (p, pc) => new X
+//{
+//    ProductId = p.Id,
+//    ProductName = p.Name,
+//    ProductCompName = pc.Name,
+
+//}).ToListAsync();
+
+
+
+#endregion
+
+
+#endregion
+
 Console.WriteLine();
 public class ECommerceDbContext : DbContext
 {
@@ -192,4 +228,10 @@ public class CompItem
     public int ProductCompId { get; set; }
     public Product Product { get; set; }
     public ProductComp ProductComp { get; set; }
+}
+public class X
+{
+    public int ProductId { get; set; }
+    public string ProductName { get; set; }
+    public string ProductCompName { get; set; }
 }

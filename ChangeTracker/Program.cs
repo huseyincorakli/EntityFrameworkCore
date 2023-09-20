@@ -53,12 +53,95 @@ ECommerceDbContext context = new();
 
 #endregion
 
-#region AcceptAll Metodu
+#region AcceptAllChanges Metodu
+
+//List<Product> products = await context.Products.ToListAsync();
+
+//products.FirstOrDefault(p => p.Id == 5).Name = "Product 4646";
+//context.Products.Remove(products.FirstOrDefault(p => p.Id == 8));
+
+//await context.SaveChangesAsync(false);
+//var x = context.ChangeTracker.Entries();
+//Console.WriteLine();
+//context.ChangeTracker.AcceptAllChanges();
 
 #endregion
 
+#region HasChanges Metodu
+//var change = context.ChangeTracker.HasChanges(); 
+#endregion
+
+#region EntityStates
+
+#region Detached
+
+//Product product = new();
+//var x = context.Entry(product).State;
+
+
+#endregion
+#region Added
+
+//Product product = new()
+//{
+//    Name= "Test",
+//    Price=123,
+//    Stock=321
+//};
+
+//await context.Products.AddAsync(product);
+//var x = context.Entry(product).State;
+//Console.WriteLine();
+//await context.SaveChangesAsync();
+#endregion
+#region Deleted
+
+//Product? product= await context.Products.FirstOrDefaultAsync(p=>p.Id==5);
+//if (product!=null)
+//{
+//    context.Products.Remove(product);
+//}
+
+//var x = context.Entry(product).State;
+
+//Console.WriteLine();
+
+//await context.SaveChangesAsync();
+
+#endregion
+#region Modified
+
+//Product? product = await context.Products.FirstOrDefaultAsync(p => p.Id == 10);
+//Console.WriteLine(context.Entry(product).State);
+//if (product != null)
+//{
+//    product.Name = "Product 325";
+//}
+
+//Console.WriteLine(context.Entry(product).State);
+//await context.SaveChangesAsync();
+//Console.WriteLine(context.Entry(product).State);
+#endregion
+
+#region Entry Properties
+
+//Product? product = await context.Products.FirstOrDefaultAsync(p=>p.Id==5);
+//product.Name = "Product 825";
+//product.Stock = 321;
+
+//var productNameOrg = context.Entry(product).OriginalValues.GetValue<string>(nameof(product.Name));
+//var productNameCur = context.Entry(product).CurrentValues.GetValue<string>(nameof(product.Name));
+//var productNameDb = await context.Entry(product).GetDatabaseValuesAsync();
+//var productNameDbData= productNameDb.GetValue<string>(nameof(product.Name));
+//Console.WriteLine("Original:"+productNameOrg);
+//Console.WriteLine("Current:" + productNameCur);
+//Console.WriteLine("Db:"+ productNameDbData);
+
+#endregion
 #endregion
 Console.WriteLine();
+#endregion
+
 #region Context & Entities
 
 public class ECommerceDbContext : DbContext

@@ -2,16 +2,19 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace One_to_One.Migrations
+namespace One_to_Many.Migrations
 {
-    [DbContext(typeof(ECommerceDbContext))]
-    partial class ECommerceDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ExampleDBContext))]
+    [Migration("20230927191756_mig_1")]
+    partial class mig_1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,40 +35,47 @@ namespace One_to_One.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("DepartmanId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("DepartmanId");
 
                     b.ToTable("Calisanlar");
                 });
 
-            modelBuilder.Entity("CalisanAdres", b =>
+            modelBuilder.Entity("Departman", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Adres")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("DepartmanAdi")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("CalisanAdresleri");
-                });
-
-            modelBuilder.Entity("CalisanAdres", b =>
-                {
-                    b.HasOne("Calisan", "Calisan")
-                        .WithOne("CalisanAdres")
-                        .HasForeignKey("CalisanAdres", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Calisan");
+                    b.ToTable("Departmanlar");
                 });
 
             modelBuilder.Entity("Calisan", b =>
                 {
-                    b.Navigation("CalisanAdres")
+                    b.HasOne("Departman", "Departman")
+                        .WithMany("Calisanlar")
+                        .HasForeignKey("DepartmanId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Departman");
+                });
+
+            modelBuilder.Entity("Departman", b =>
+                {
+                    b.Navigation("Calisanlar");
                 });
 #pragma warning restore 612, 618
         }

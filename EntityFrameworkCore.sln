@@ -28,6 +28,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Relational_Structures", "Re
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "One_to_One", "One_to_One\One_to_One.csproj", "{A1A0DB95-F3F2-4B62-9CEF-4E4E89CB0933}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "One_to_Many", "One_to_Many\One_to_Many.csproj", "{FE4E87C1-44D5-44DC-97D6-D816E0E61399}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +76,10 @@ Global
 		{A1A0DB95-F3F2-4B62-9CEF-4E4E89CB0933}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1A0DB95-F3F2-4B62-9CEF-4E4E89CB0933}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1A0DB95-F3F2-4B62-9CEF-4E4E89CB0933}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE4E87C1-44D5-44DC-97D6-D816E0E61399}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE4E87C1-44D5-44DC-97D6-D816E0E61399}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE4E87C1-44D5-44DC-97D6-D816E0E61399}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE4E87C1-44D5-44DC-97D6-D816E0E61399}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

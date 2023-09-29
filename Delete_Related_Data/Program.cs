@@ -23,6 +23,20 @@ Console.WriteLine("Hello, World!");
 //author.Books.Remove(book);
 //await context.SaveChangesAsync();  
 #endregion
+#region Cascade Delete
+
+#region Cascade
+//Blog? blog = await context.Blogs.FindAsync(1);
+//context.Blogs.Remove(blog); 
+//await context.SaveChangesAsync();
+#endregion
+#region SetNull
+//Blog? blog = await context.Blogs.FindAsync(2);
+//context.Blogs.Remove(blog);
+//await context.SaveChangesAsync();
+#endregion
+
+#endregion
 #region Saving Data
 //Person person = new()
 //{
@@ -105,7 +119,7 @@ class Blog
 class Post
 {
     public int Id { get; set; }
-    public int BlogId { get; set; }
+    public int? BlogId { get; set; }
     public string Title { get; set; }
 
     public Blog Blog { get; set; }
@@ -150,6 +164,13 @@ class ApplicationDbContext : DbContext
         modelBuilder.Entity<Address>()
             .HasOne(a => a.Person)
             .WithOne(p => p.Address)
-            .HasForeignKey<Address>(a => a.Id);
+            .HasForeignKey<Address>(a => a.Id)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Post>()
+            .HasOne(b => b.Blog)
+            .WithMany(x => x.Posts)
+            .OnDelete(DeleteBehavior.SetNull)
+            .IsRequired(false);
     }
 }

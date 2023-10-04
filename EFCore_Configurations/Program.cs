@@ -1,0 +1,127 @@
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+ApplicationDbContext context = new();
+Console.WriteLine("Hello, World!");
+
+
+class Person
+{
+	//[Key]
+	public int Id { get; set; }
+	//public int Id2 { get; set; }
+	//[ForeignKey(nameof(Department))]
+	//public int DId { get; set; }
+	//[Column("Adi", TypeName = "metin", Order = 7)]
+	public int DepartmentId { get; set; }
+	public string _name;
+	public string Name { get => _name; set => _name = value; }
+	//[Required()]
+	//[MaxLength(13)]
+	//[StringLength(14)]
+	[Unicode]
+	public string? Surname { get; set; }
+	//[Precision(5, 3)]
+	public decimal Salary { get; set; }
+	//Yazılımsal amaçla oluşturduğum bir property
+	//[NotMapped]
+	//public string Laylaylom { get; set; }
+
+	[Timestamp]
+	//[Comment("Bu şuna yaramaktadır...")]
+	public byte[] RowVersion { get; set; }
+
+	//[ConcurrencyCheck]
+	//public int ConcurrencyCheck { get; set; }
+
+	public DateTime CreatedDate { get; set; }
+	public Department Department { get; set; }
+}
+class Department
+{
+	public int Id { get; set; }
+	//[Column("DepartmentName", TypeName = "text", Order = 7)]
+	public string Name { get; set; }
+	public ICollection<Person> Persons { get; set; }
+}
+class Example
+{
+
+	public int X { get; set; }
+	public int Y { get; set; }
+	public int Computed { get; set; }
+}
+class Entity
+{
+	public int Id { get; set; }
+	public string X { get; set; }
+}
+class A : Entity
+{
+	public int Y { get; set; }
+}
+class B : Entity
+{
+	public int Z { get; set; }
+}
+class ApplicationDbContext : DbContext
+{
+	//public DbSet<Entity> Entities { get; set; }
+	//public DbSet<A> As { get; set; }
+	//public DbSet<B> Bs { get; set; }
+
+	public DbSet<Person> Persons { get; set; }
+	public DbSet<Department> Departments { get; set; }
+	//public DbSet<Flight> Flights { get; set; }
+	//public DbSet<Airport> Airports { get; set; }
+	//public DbSet<Example> Examples { get; set; }
+
+	protected override void OnModelCreating(ModelBuilder modelBuilder)
+	{
+		#region GetEntityTypes
+		//var entities = modelBuilder.Model.GetEntityTypes();
+		//foreach (var entity in entities)
+		//{
+		//	Console.WriteLine(entity.Name);
+		//}
+		#endregion
+		#region ToTable
+		//modelBuilder.Entity<Person>().ToTable("Kisiler");
+		#endregion
+		#region Column
+
+		//modelBuilder.Entity<Department>()
+		//	.Property(p => p.Name)
+		//	.HasColumnName("DepartmentName")
+		//	.HasColumnType("text")
+		//	.HasColumnOrder(7);
+
+		#endregion
+	}
+
+	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+	{
+		optionsBuilder.UseSqlServer("Server=(LocalDb)\\HcSqlServer; Database=ExampleDatabase");
+	}
+}
+
+public class Flight
+{
+	public int FlightID { get; set; }
+	public int DepartureAirportId { get; set; }
+	public int ArrivalAirportId { get; set; }
+	public string Name { get; set; }
+	public Airport DepartureAirport { get; set; }
+	public Airport ArrivalAirport { get; set; }
+}
+
+public class Airport
+{
+	public int AirportID { get; set; }
+	public string Name { get; set; }
+	[InverseProperty(nameof(Flight.DepartureAirport))]
+	public virtual ICollection<Flight> DepartingFlights { get; set; }
+
+	[InverseProperty(nameof(Flight.ArrivalAirport))]
+	public virtual ICollection<Flight> ArrivingFlights { get; set; }
+}

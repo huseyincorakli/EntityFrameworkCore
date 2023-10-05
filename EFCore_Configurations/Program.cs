@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 ApplicationDbContext context = new();
 Console.WriteLine("Hello, World!");
 
- 
 
-class Person
+
+	class Person
 {
 	public int PrimaryKeyOlsun { get; set; }
 	//[NotMapped]
@@ -32,7 +32,6 @@ class Person
 	//public string Laylaylom { get; set; }
 
 	[Timestamp]
-	//[Comment("Bu şuna yaramaktadır...")]
 	public byte[] RowVersion { get; set; }
 
 	//[ConcurrencyCheck]
@@ -111,8 +110,24 @@ class ApplicationDbContext : DbContext
 		//modelBuilder.Entity<Person>().Ignore(p=>p.KolonOlmasın);
 		#endregion
 		#region HasKey
-		modelBuilder.Entity<Person>().HasKey(p=>p.PrimaryKeyOlsun)
+		//modelBuilder.Entity<Person>().HasKey(p => p.PrimaryKeyOlsun);
 		#endregion
+		#region IsRowVersion
+
+		//modelBuilder.Entity<Person>()
+		//	.Property(p => p.RowVersion)
+		//	.IsRowVersion();
+
+		#endregion
+		#region IsRequired
+		//modelBuilder.Entity<Person>().Property(p => p.Surname).IsRequired();
+		#endregion
+		#region HasMaxLenght
+		modelBuilder.Entity<Person>()
+			.Property(p => p.Surname)
+			.HasMaxLength(30);
+		#endregion
+
 	}
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

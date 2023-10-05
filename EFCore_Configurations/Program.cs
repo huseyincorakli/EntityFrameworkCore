@@ -4,9 +4,13 @@ using System.ComponentModel.DataAnnotations;
 ApplicationDbContext context = new();
 Console.WriteLine("Hello, World!");
 
+ 
 
 class Person
 {
+	public int PrimaryKeyOlsun { get; set; }
+	//[NotMapped]
+	//public int KolonOlmasın { get; set; }
 	//[Key]
 	public int Id { get; set; }
 	//public int Id2 { get; set; }
@@ -96,6 +100,18 @@ class ApplicationDbContext : DbContext
 		//	.HasColumnType("text")
 		//	.HasColumnOrder(7);
 
+		#endregion
+		#region HasForeingKey
+		//modelBuilder.Entity<Person>()
+		//	.HasOne(p => p.Department)
+		//	.WithMany(d => d.Persons)
+		//	.HasForeignKey(p => p.DId);
+		#endregion
+		#region Ignore
+		//modelBuilder.Entity<Person>().Ignore(p=>p.KolonOlmasın);
+		#endregion
+		#region HasKey
+		modelBuilder.Entity<Person>().HasKey(p=>p.PrimaryKeyOlsun)
 		#endregion
 	}
 

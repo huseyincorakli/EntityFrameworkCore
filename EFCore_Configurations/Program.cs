@@ -4,9 +4,17 @@ using System.ComponentModel.DataAnnotations;
 ApplicationDbContext context = new();
 Console.WriteLine("Hello, World!");
 
+class Personn
+{
+	public int Id{ get; set; }
+	public string Name { get; set; }
 
+	[ConcurrencyCheck]
+	public int ConcurrencyToken { get; set; }
 
-	class Person
+}
+
+class Person
 {
 	public int PrimaryKeyOlsun { get; set; }
 	//[NotMapped]
@@ -123,9 +131,25 @@ class ApplicationDbContext : DbContext
 		//modelBuilder.Entity<Person>().Property(p => p.Surname).IsRequired();
 		#endregion
 		#region HasMaxLenght
-		modelBuilder.Entity<Person>()
-			.Property(p => p.Surname)
-			.HasMaxLength(30);
+		//modelBuilder.Entity<Person>()
+		//	.Property(p => p.Surname)
+		//	.HasMaxLength(30);
+		#endregion
+		#region HasPrecision
+		//modelBuilder.Entity<Person>()
+		//	.Property(p => p.Salary)
+		//	.HasPrecision(5, 3);
+		#endregion
+		#region IsUnicode
+		//modelBuilder.Entity<Person>().Property(p => p.Surname).IsUnicode();
+		#endregion
+		#region HasComment
+		//modelBuilder.Entity<Personn>()
+		//	.Property(p => p.X)
+		//	.HasComment("Bu kolon X kolonudur");
+		#endregion
+		#region IsConcurrencyToken
+
 		#endregion
 
 	}

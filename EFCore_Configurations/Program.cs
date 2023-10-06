@@ -155,9 +155,21 @@ class ApplicationDbContext : DbContext
 		//	.IsConcurrencyToken();
 		#endregion
 		#region CompositeKey
-		modelBuilder.Entity<Personn>().HasKey(p => new{ p.Id, p.Id2 });
+		//modelBuilder.Entity<Personn>().HasKey(p => new{ p.Id, p.Id2 });
 		#endregion
-
+		#region HasDefaultSchema
+		//modelBuilder.HasDefaultSchema("DBOX");
+		#endregion
+		#region HasDefaultValue
+		//modelBuilder.Entity<Personn>()
+		//	.Property(p => p.Name)
+		//	.HasDefaultValue("Person Name");
+		#endregion
+		#region HasDefaultValueSql
+		//modelBuilder.Entity<Personn>()
+		//	.Property(p => p.Name)
+		//	.HasDefaultValueSql("GETDATE()");
+		#endregion
 	}
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

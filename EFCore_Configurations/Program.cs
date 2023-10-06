@@ -7,6 +7,7 @@ Console.WriteLine("Hello, World!");
 class Personn
 {
 	public int Id{ get; set; }
+	public int Id2 { get; set; }
 	public string Name { get; set; }
 
 	[ConcurrencyCheck]
@@ -21,7 +22,7 @@ class Person
 	//public int KolonOlmasın { get; set; }
 	//[Key]
 	public int Id { get; set; }
-	//public int Id2 { get; set; }
+	
 	//[ForeignKey(nameof(Department))]
 	//public int DId { get; set; }
 	//[Column("Adi", TypeName = "metin", Order = 7)]
@@ -149,7 +150,12 @@ class ApplicationDbContext : DbContext
 		//	.HasComment("Bu kolon X kolonudur");
 		#endregion
 		#region IsConcurrencyToken
-
+		//modelBuilder.Entity<Personn>()
+		//	.Property(p => p.ConcurrencyToken)
+		//	.IsConcurrencyToken();
+		#endregion
+		#region CompositeKey
+		modelBuilder.Entity<Personn>().HasKey(p => new{ p.Id, p.Id2 });
 		#endregion
 
 	}

@@ -36,13 +36,6 @@ namespace EFCore_Configurations.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Departments");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Abc"
-                        });
                 });
 
             modelBuilder.Entity("Person", b =>
@@ -61,7 +54,7 @@ namespace EFCore_Configurations.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("PrimaryKeyOlsun")
                         .HasColumnType("int");
@@ -83,39 +76,9 @@ namespace EFCore_Configurations.Migrations
 
                     b.HasIndex("DepartmentId");
 
-                    b.ToTable("Persons");
+                    b.HasIndex("Name");
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DepartmentId = 1,
-                            Name = "AAA",
-                            PrimaryKeyOlsun = 0,
-                            Salary = 0m,
-                            Surname = "BBB"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DepartmentId = 1,
-                            Name = "BBB",
-                            PrimaryKeyOlsun = 0,
-                            Salary = 0m,
-                            Surname = "BBB"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DepartmentId = 1,
-                            Name = "CCC",
-                            PrimaryKeyOlsun = 0,
-                            Salary = 0m,
-                            Surname = "BBB"
-                        });
+                    b.ToTable("Persons");
                 });
 
             modelBuilder.Entity("Person", b =>

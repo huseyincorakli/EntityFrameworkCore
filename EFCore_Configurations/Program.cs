@@ -14,7 +14,10 @@ class Personn
 	public int ConcurrencyToken { get; set; }
 
 }
-
+class Example
+{
+	public string abc { get; set; }
+}
 class Person
 {
 	public int PrimaryKeyOlsun { get; set; }
@@ -56,13 +59,7 @@ class Department
 	public string Name { get; set; }
 	public ICollection<Person> Persons { get; set; }
 }
-class Example
-{
-	public int Id { get; set; }
-	public int X { get; set; }
-	public int Y { get; set; }
-	public int Computed { get; set; }
-}
+
 class Entity
 {
 	public int Id { get; set; }
@@ -84,6 +81,7 @@ class ApplicationDbContext : DbContext
 
 	public DbSet<Person> Persons { get; set; }
 	public DbSet<Department> Departments { get; set; }
+	//public DbSet<Example> Examples { get; set; }
 	//public DbSet<Flight> Flights { get; set; }
 	//public DbSet<Airport> Airports { get; set; }
 	//public DbSet<Example> Examples { get; set; }
@@ -191,6 +189,12 @@ class ApplicationDbContext : DbContext
 		//		DepartmentId = 1, 
 		//		Surname = "BBB" }
 		//	);
+		#endregion
+		#region HasNoKey
+		//modelBuilder.Entity<Example>().HasNoKey();
+		#endregion
+		#region HasIndex
+		//modelBuilder.Entity<Person>().HasIndex(p => p.Name);
 		#endregion
 	}
 

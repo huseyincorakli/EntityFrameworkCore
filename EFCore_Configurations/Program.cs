@@ -6,7 +6,7 @@ Console.WriteLine("Hello, World!");
 
 class Personn
 {
-	public int Id{ get; set; }
+	public int Id { get; set; }
 	public int Id2 { get; set; }
 	public string Name { get; set; }
 
@@ -22,7 +22,7 @@ class Person
 	//public int KolonOlmasın { get; set; }
 	//[Key]
 	public int Id { get; set; }
-	
+
 	//[ForeignKey(nameof(Department))]
 	//public int DId { get; set; }
 	//[Column("Adi", TypeName = "metin", Order = 7)]
@@ -58,7 +58,7 @@ class Department
 }
 class Example
 {
-
+	public int Id { get; set; }
 	public int X { get; set; }
 	public int Y { get; set; }
 	public int Computed { get; set; }
@@ -169,6 +169,28 @@ class ApplicationDbContext : DbContext
 		//modelBuilder.Entity<Personn>()
 		//	.Property(p => p.Name)
 		//	.HasDefaultValueSql("GETDATE()");
+		#endregion
+		#region HasComputedColumnSql
+		//modelBuilder.Entity<Example>()
+		//	.Property(e => e.Computed)
+		//	.HasComputedColumnSql("[X]+[Y]");
+		#endregion
+		#region HasData
+		//modelBuilder.Entity<Department>()
+		//	.HasData(new Department() { Id = 1, Name = "Abc" });
+		//modelBuilder.Entity<Person>()
+		//	.HasData(
+		//	new Person { 
+		//		Id = 1,
+		//		Name = "AAA",
+		//		DepartmentId = 1,
+		//		Surname = "BBB" },
+		//	new Person { 
+		//		Id = 2,
+		//		Name = "BBB", 
+		//		DepartmentId = 1, 
+		//		Surname = "BBB" }
+		//	);
 		#endregion
 	}
 

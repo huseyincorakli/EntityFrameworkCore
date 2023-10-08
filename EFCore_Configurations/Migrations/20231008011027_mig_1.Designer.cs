@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCore_Configurations.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231004230611_mig_1")]
+    [Migration("20231008011027_mig_1")]
     partial class mig_1
     {
         /// <inheritdoc />
@@ -39,6 +39,13 @@ namespace EFCore_Configurations.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Departments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Abc"
+                        });
                 });
 
             modelBuilder.Entity("Person", b =>
@@ -59,6 +66,9 @@ namespace EFCore_Configurations.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("PrimaryKeyOlsun")
+                        .HasColumnType("int");
+
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
                         .IsRequired()
@@ -77,6 +87,38 @@ namespace EFCore_Configurations.Migrations
                     b.HasIndex("DepartmentId");
 
                     b.ToTable("Persons");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartmentId = 1,
+                            Name = "AAA",
+                            PrimaryKeyOlsun = 0,
+                            Salary = 0m,
+                            Surname = "BBB"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartmentId = 1,
+                            Name = "BBB",
+                            PrimaryKeyOlsun = 0,
+                            Salary = 0m,
+                            Surname = "BBB"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartmentId = 1,
+                            Name = "CCC",
+                            PrimaryKeyOlsun = 0,
+                            Salary = 0m,
+                            Surname = "BBB"
+                        });
                 });
 
             modelBuilder.Entity("Person", b =>

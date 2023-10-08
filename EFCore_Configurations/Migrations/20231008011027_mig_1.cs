@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace EFCore_Configurations.Migrations
 {
     /// <inheritdoc />
@@ -30,6 +32,7 @@ namespace EFCore_Configurations.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    PrimaryKeyOlsun = table.Column<int>(type: "int", nullable: false),
                     DepartmentId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Surname = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -46,6 +49,21 @@ namespace EFCore_Configurations.Migrations
                         principalTable: "Departments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Departments",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 1, "Abc" });
+
+            migrationBuilder.InsertData(
+                table: "Persons",
+                columns: new[] { "Id", "CreatedDate", "DepartmentId", "Name", "PrimaryKeyOlsun", "Salary", "Surname" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "AAA", 0, 0m, "BBB" },
+                    { 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "BBB", 0, 0m, "BBB" },
+                    { 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "CCC", 0, 0m, "BBB" }
                 });
 
             migrationBuilder.CreateIndex(

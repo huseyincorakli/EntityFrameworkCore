@@ -32,6 +32,7 @@ class Person
 	public int? TotalGain { get; set; }
 	[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 	public Guid PersonCode { get; set; }
+	public int Deneme { get; set; }
 }
 
 class ApplicationDbContext : DbContext

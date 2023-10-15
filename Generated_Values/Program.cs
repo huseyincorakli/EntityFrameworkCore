@@ -32,7 +32,6 @@ class Person
 	public int? TotalGain { get; set; }
 	[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 	public Guid PersonCode { get; set; }
-	public int Deneme { get; set; }
 }
 
 class ApplicationDbContext : DbContext
@@ -47,9 +46,14 @@ class ApplicationDbContext : DbContext
 		//	.HasDefaultValueSql("FLOOR(RAND()*1000)");
 		#endregion
 		#region HasComputedColumn
-		modelBuilder.Entity<Person>()
-			.Property(p => p.TotalGain)
-			.HasComputedColumnSql("([Salary]+[Premium]*10)");
+		//modelBuilder.Entity<Person>()
+		//	.Property(p => p.TotalGain)
+		//	.HasComputedColumnSql("([Salary]+[Premium]*10)");
+		#endregion
+		#region ValueGeneratedNever
+		//modelBuilder.Entity<Person>()
+		//	.Property(p => p.PersonId)
+		//	.ValueGeneratedNever();
 		#endregion
 	}
 
